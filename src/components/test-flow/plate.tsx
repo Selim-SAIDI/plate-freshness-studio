@@ -53,10 +53,8 @@ export function Plate({
 
   return (
     <div
-      key={bumpKey}
       className={cn(
         "relative shrink-0 rounded-full bg-plate shadow-plate transition-[box-shadow,transform] duration-300",
-        bumpKey ? "animate-bump" : "",
         over && "shadow-glow scale-[1.02]",
         className,
       )}
@@ -76,6 +74,12 @@ export function Plate({
     >
       <div className="pointer-events-none absolute inset-[8%] rounded-full border border-plate-rim shadow-[inset_0_6px_24px_-8px_oklch(0.4_0.03_275/35%)]" />
       <div className="pointer-events-none absolute inset-[22%] rounded-full border border-plate-rim/50" />
+      {bumpKey ? (
+        <span
+          key={bumpKey}
+          className="pointer-events-none absolute -inset-1 rounded-full border-4 border-teal/70 animate-ring"
+        />
+      ) : null}
 
       {interactive && items.length === 0 && (
         <div
