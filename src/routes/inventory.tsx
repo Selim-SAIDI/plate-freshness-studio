@@ -33,7 +33,7 @@ function InventoryPage() {
     return [...map.entries()]
       .map(([name, list]) => ({
         name,
-        latest: list[0],
+        latest: list[0]!,
         count: list.length,
         avg: Math.round(list.reduce((s, t) => s + t.score, 0) / list.length),
         trend: [...list].reverse().map((t) => t.score),

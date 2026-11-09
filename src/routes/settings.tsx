@@ -67,7 +67,7 @@ function SettingsPage() {
             max={180}
             step={5}
             value={[settings.measurementDurationSec]}
-            onValueChange={([v]) => updateSettings({ measurementDurationSec: v })}
+            onValueChange={([v]) => v !== undefined && updateSettings({ measurementDurationSec: v })}
           />
           <div className="mt-2 flex justify-between font-mono text-xs text-muted-foreground">
             <span>10s</span>

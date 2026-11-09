@@ -77,10 +77,11 @@ export function AnalysisStage({
 
   const progress = elapsed / durationSec;
   const msgIdx = MESSAGES.reduce((acc, m, i) => (progress >= m.at ? i : acc), 0);
+  const msgText = MESSAGES[msgIdx]?.text ?? "";
 
   useEffect(() => {
-    setLog((l) => (l.some((e) => e.text === MESSAGES[msgIdx].text) ? l : [...l, { t: elapsedRef.current, text: MESSAGES[msgIdx].text }]));
-  }, [msgIdx]);
+    setLog((l) => (!msgText || l.some((e) => e.text === msgText) ? l : [...l, { t: elapsedRef.current, text: msgText }]));
+  }, [msgText]);
 
   const toggleDoor = () => {
     const next: DoorState = doorRef.current === "closed" ? "open" : "closed";
@@ -133,7 +134,7 @@ export function AnalysisStage({
           </CircularProgress>
           <div className="w-full max-w-sm text-center">
             <p key={isOpen ? "open" : msgIdx} className={cn("text-lg font-semibold animate-fade-up", isOpen && "text-moderate")}>
-              {isOpen ? "Door open — close it to resume" : MESSAGES[msgIdx].text}
+              {isOpen ? "Door open — close it to resume" : msgText}
               {!isOpen && !finished && <span className="ml-0.5 animate-blink">▍</span>}
             </p>
             <div className="mt-4 flex justify-center gap-1.5">

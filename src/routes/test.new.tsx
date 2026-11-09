@@ -17,9 +17,10 @@ import { createDishProfile, type DishProfile, type SensorReading } from "@/lib/s
 import type { FreshnessTest } from "@/lib/types";
 
 export const Route = createFileRoute("/test/new")({
-  validateSearch: (s: Record<string, unknown>): { from?: string } => ({
-    from: typeof s.from === "string" ? s.from : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { from?: string } => {
+    const from = s["from"];
+    return typeof from === "string" ? { from } : {};
+  },
   head: () => ({
     meta: [
       { title: "Create a New Test — Smart Food Box" },

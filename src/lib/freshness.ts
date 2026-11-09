@@ -55,7 +55,7 @@ export function computeFreshness(readings: SensorReading[], doorOpenings: number
     temperatureC: avg(rs.map((r) => r.temperatureC)),
     humidityPct: avg(rs.map((r) => r.humidityPct)),
     gasResistanceKOhm: avg(rs.map((r) => r.gasResistanceKOhm)),
-    weightG: rs.length ? rs[rs.length - 1].weightG : 0,
+    weightG: rs[rs.length - 1]?.weightG ?? 0,
   };
 
   const temperature = clamp(100 - Math.max(0, averages.temperatureC - 4) * 7, 0, 100);
