@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- UI reads sensor data only through the `SensorSource` interface in `src/lib/sensors/` (factory `createSensorSource`); a future ESP32 REST/WebSocket source must implement that same interface. Why: hardware can be swapped in without touching UI components.
+- Freshness scoring lives in pure functions in `src/lib/freshness.ts`, covered by `src/lib/freshness.test.ts`. Why: thresholds and penalties are business rules that must stay testable and UI-independent.
+- Prototype persistence (test history, settings) goes through `src/lib/store.ts` (localStorage + `useSyncExternalStore`, empty server snapshot). Why: one swap point when a backend is added, and no SSR hydration mismatches.
