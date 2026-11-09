@@ -150,9 +150,9 @@
   --gradient-plate: radial-gradient(circle at 40% 35%, var(--plate), var(--plate-rim) 100%);
   --gradient-door: linear-gradient(
     135deg,
-    oklch(0.42 0.07 285 / 62%),
-    oklch(0.26 0.06 282 / 72%) 60%,
-    oklch(0.5 0.1 200 / 40%)
+    oklch(0.55 0.08 285 / 30%),
+    oklch(0.3 0.06 282 / 22%) 55%,
+    oklch(0.6 0.1 200 / 28%)
   );
 
   --shadow-glass: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 20px 50px -24px oklch(0.05 0.03 280 / 80%);
@@ -283,7 +283,6 @@
 
 @utility bg-door {
   background: var(--gradient-door);
-  backdrop-filter: blur(2px);
 }
 
 @utility bg-plate {

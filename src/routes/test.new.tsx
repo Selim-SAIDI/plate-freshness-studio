@@ -80,7 +80,7 @@ function NewTestPage() {
       series: readings
         .filter((_, i) => i % Math.max(1, Math.floor(readings.length / 60)) === 0)
         .map((x) => ({
-          t: Math.round((x.timestamp - start) / 1000),
+          t: Math.round((x.timestamp - start) / 100) / 10,
           temperatureC: x.temperatureC,
           humidityPct: x.humidityPct,
           gasResistanceKOhm: x.gasResistanceKOhm,

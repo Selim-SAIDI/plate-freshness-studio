@@ -77,7 +77,7 @@ export function TestReport({ test, unit = "C" }: { test: FreshnessTest; unit?: "
                 <AreaChart data={test.series} margin={{ left: -12, right: 8, top: 8 }}>
                   <GradientDefs id={`rep-${metric}`} color={m.color} />
                   <CartesianGrid {...gridProps} />
-                  <XAxis dataKey="t" {...axisProps} tickFormatter={(v) => `${v}s`} />
+                  <XAxis dataKey="t" type="number" domain={["dataMin", "dataMax"]} {...axisProps} tickFormatter={(v) => `${Math.round(v)}s`} />
                   <YAxis {...axisProps} domain={["auto", "auto"]} tickFormatter={(v) => Number(v).toFixed(0)} />
                   <Tooltip {...tooltipProps} labelFormatter={(v) => `t = ${v}s`} formatter={(v: number) => [`${v.toFixed(1)} ${m.unit}`, m.label]} />
                   <Area type="monotone" dataKey={metric} stroke={m.color} strokeWidth={2.5} fill={`url(#rep-${metric})`} animationDuration={900} />

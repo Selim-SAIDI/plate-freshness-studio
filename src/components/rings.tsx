@@ -20,7 +20,7 @@ export function CircularProgress({
   const v = Math.min(1, Math.max(0, value));
   return (
     <div className="relative" style={{ width: size, height: size }}>
-      <svg width={size} height={size} className="-rotate-90">
+      <svg width={size} height={size} className="-rotate-90 overflow-visible">
         <defs>
           <linearGradient id={`g-${id}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor={color ?? "var(--teal)"} />

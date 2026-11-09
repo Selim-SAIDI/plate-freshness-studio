@@ -74,7 +74,7 @@ export function DishBuilder({
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(260px,300px)_1fr] xl:grid-cols-[300px_1fr_320px]">
       {/* Plate stage */}
-      <section className="order-1 lg:col-start-2 xl:col-start-2">
+      <section className="order-1 lg:col-start-2 lg:row-start-1">
         <div
           ref={stageRef}
           className="glass relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-[2.5rem] p-4 md:min-h-[540px]"
@@ -100,7 +100,7 @@ export function DishBuilder({
       </section>
 
       {/* Pantry */}
-      <aside className="order-2 lg:col-start-1 lg:row-start-1 lg:row-span-2 xl:row-span-1">
+      <aside className="order-2 lg:col-start-1 lg:row-[1/span_2] xl:row-[1/span_1]">
         <div className="glass rounded-3xl p-4">
           <h3 className="mb-3 px-1 text-sm font-semibold">Pantry</h3>
           <div className="grid grid-cols-3 gap-2">
@@ -153,7 +153,7 @@ export function DishBuilder({
       </aside>
 
       {/* Details */}
-      <aside className="order-3 space-y-4 lg:col-start-2 xl:col-start-3 xl:row-start-1">
+      <aside className="order-3 space-y-4 lg:col-start-2 lg:row-start-2 xl:col-start-3 xl:row-start-1">
         <div className="glass rounded-3xl p-5">
           <label htmlFor="dish-name" className="text-sm font-semibold">
             Dish name
