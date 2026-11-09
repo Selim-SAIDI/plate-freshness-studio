@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as HistoryIndexRouteImport } from './routes/history.index'
 import { Route as HistoryIdRouteImport } from './routes/history.$id'
 import { Route as TestNewRouteImport } from './routes/test.new'
@@ -20,9 +22,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InventoryRoute = InventoryRouteImport.update({
   id: '/inventory',
   path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HistoryIndexRoute = HistoryIndexRouteImport.update({
@@ -43,14 +55,18 @@ const TestNewRoute = TestNewRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/inventory': typeof InventoryRoute
+  '/settings': typeof SettingsRoute
   '/history/$id': typeof HistoryIdRoute
   '/test/new': typeof TestNewRoute
   '/history/': typeof HistoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/inventory': typeof InventoryRoute
+  '/settings': typeof SettingsRoute
   '/history/$id': typeof HistoryIdRoute
   '/test/new': typeof TestNewRoute
   '/history': typeof HistoryIndexRoute
@@ -58,23 +74,48 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/inventory': typeof InventoryRoute
+  '/settings': typeof SettingsRoute
   '/history/$id': typeof HistoryIdRoute
   '/test/new': typeof TestNewRoute
   '/history/': typeof HistoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/inventory' | '/history/$id' | '/test/new' | '/history/'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/inventory'
+    | '/settings'
+    | '/history/$id'
+    | '/test/new'
+    | '/history/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inventory' | '/history/$id' | '/test/new' | '/history'
+  to:
+    | '/'
+    | '/analytics'
+    | '/inventory'
+    | '/settings'
+    | '/history/$id'
+    | '/test/new'
+    | '/history'
   id:
-    '__root__' | '/' | '/inventory' | '/history/$id' | '/test/new' | '/history/'
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/inventory'
+    | '/settings'
+    | '/history/$id'
+    | '/test/new'
+    | '/history/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   InventoryRoute: typeof InventoryRoute
+  SettingsRoute: typeof SettingsRoute
   HistoryIdRoute: typeof HistoryIdRoute
   TestNewRoute: typeof TestNewRoute
   HistoryIndexRoute: typeof HistoryIndexRoute
@@ -89,11 +130,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/inventory': {
       id: '/inventory'
       path: '/inventory'
       fullPath: '/inventory'
       preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/history/': {
@@ -122,7 +177,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   InventoryRoute: InventoryRoute,
+  SettingsRoute: SettingsRoute,
   HistoryIdRoute: HistoryIdRoute,
   TestNewRoute: TestNewRoute,
   HistoryIndexRoute: HistoryIndexRoute,

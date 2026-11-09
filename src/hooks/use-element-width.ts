@@ -6,7 +6,7 @@ export function useElementWidth<T extends HTMLElement>(initial = 0) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setWidth(entry.contentRect.width));
+    const ro = new ResizeObserver(([entry]) => entry && setWidth(entry.contentRect.width));
     ro.observe(el);
     setWidth(el.getBoundingClientRect().width);
     return () => ro.disconnect();

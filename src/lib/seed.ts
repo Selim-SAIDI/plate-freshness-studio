@@ -20,12 +20,12 @@ export function generateSeedTests(now = Date.now()): FreshnessTest[] {
   const tests: FreshnessTest[] = [];
   const count = 34;
   for (let i = 0; i < count; i++) {
-    const dish = SEED_DISHES[Math.floor(rand() * SEED_DISHES.length)];
+    const dish = SEED_DISHES[Math.floor(rand() * SEED_DISHES.length)]!;
     const daysAgo = (i / count) * 45 + rand() * 0.8;
     const hour = 8 + Math.floor(rand() * 12);
     const d = new Date(now - daysAgo * 86_400_000);
     d.setHours(hour, Math.floor(rand() * 60), 0, 0);
-    const durationSec = [30, 45, 60, 90][Math.floor(rand() * 4)];
+    const durationSec = [30, 45, 60, 90][Math.floor(rand() * 4)] ?? 30;
     const profile = createDishProfile(dish.ingredients, rand);
     const readings = simulateSeries(profile, d.getTime(), durationSec, 24, rand);
     const doorOpenings = rand() < 0.75 ? 0 : rand() < 0.7 ? 1 : 2;
